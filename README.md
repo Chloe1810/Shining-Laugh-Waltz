@@ -1,1 +1,1 @@
-# Shining-Laugh-Waltz since 2023/12/01
+# Shining-Laugh-Waltz since 12.01.2023
