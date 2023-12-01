@@ -1,0 +1,32 @@
+﻿span{
+  color: #b22222;
+}
+
+bold{
+ font-weight: bold
+}
+
+big{
+ font-size: 7
+}
+
+/*========= GOOGLEフォント ===============*/
+
+p.google_font {
+font-family: 'BIZ UDGothic', sans-serif;
+}
+
+/*========= 波線を描画するエリア設定 ===============*/
+
+<div class="wave">
+<canvas id="waveCanvas"></canvas>
+</div>
+
+.wave{
+position:relative;
+}
+
+.wave canvas{
+position: absolute;
+width: 100%;
+}
