@@ -1,0 +1,212 @@
+﻿span{
+  color: #b22222;
+}
+
+
+/*========= ローディング画面のためのCSS ===============*/
+#splash {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	z-index: 9999999;
+	text-align:center;
+	color:#fff;
+}
+
+#splash-logo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+/*========= 画面遷移のためのCSS ===============*/
+
+/*画面遷移アニメーション*/
+.splashbg{
+    display: none;
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear .splashbg{
+	display:block;
+}
+
+body.appear .splashbg{
+	animation-name:PageAnime;
+	animation-duration:1.2s;
+	animation-timing-function:ease-in-out;
+	animation-fill-mode:forwards;
+    content: "";
+    position:fixed;
+	z-index: 999;
+    width: 50%;
+    height: 100vh;
+    top: 0;
+	left: 0;
+    transform: translateX(-300%) skewX(-45deg);
+    background-color: #b22222;/*伸びる背景色の設定*/
+}
+
+@keyframes PageAnime{
+	0% {
+		transform-origin:left;
+		transform:translateX(-300%) skewX(-45deg);
+	}
+	100% {
+		transform-origin:left;
+		transform:translateX(500%) skewX(-45deg);
+	}
+}
+
+/*画面遷移の後現れるコンテンツ設定*/
+#container{
+	opacity: 0;/*はじめは透過0に*/
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear #container{
+	animation-name:PageAnimeAppear;
+	animation-duration:1s;
+	animation-delay: 0.6s;
+	animation-fill-mode:forwards;
+	opacity: 0;
+}
+
+@keyframes PageAnimeAppear{
+	0% {
+	opacity: 0;
+	}
+	100% {
+	opacity: 1;
+}
+}
+
+
+/*========= 粒子を描画するエリア設定 ===============*/
+
+
+
+#wrapper{
+/*描画されるテキストを中央寄せにする*/
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#particle{
+  position: absolute; /*これつけたら波と粒子が重なる*/
+  width:65%;
+  vertical-align: bottom;/*canvasタグ下に余白が生まれるのを防ぐ*/
+}
+
+
+/*========= 波線を描画するエリア設定 ===============*/
+
+<div class="wave">
+<canvas id="waveCanvas"></canvas>
+</div>
+
+.wave{
+position:relative;
+}
+
+.wave canvas{
+position: absolute;
+width: 100%;
+}
+
+
+
+
+/*==================================================
+共通　横並びのための設定
+===================================*/
+
+.gnavi{
+    text-align: center;
+    flex-wrap: wrap;/*スマホ表示折り返し用なのでPCのみなら不要*/
+    margin: 0px 20px 0px;
+    list-style: none;
+    padding:10px 10px;
+
+}
+
+.gnavi li a{
+    text-align: center;
+    display: block;
+    padding:10px 30px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.gnavi li{
+    text-align: center;
+    margin-left:10px;
+    margin-bottom:20px;
+}
+
+/*==================================================
+　5-3-7 上下に線が伸びて背景になる
+===================================*/
+
+.gnavi li a{
+    /*線の基点とするためrelativeを指定*/
+	position: relative;
+    /*はみ出る要素を隠す*/
+	overflow: hidden;
+    /*アニメーションの指定*/
+	transition: all .2s;
+}
+
+/*現在地とhoverの設定*/
+.gnavi li.current a,
+.gnavi li a:hover{
+    /*背景色をつける*/
+    background: #b22222;
+	color:#000;
+}
+
+/*背景がつくのアニメーションの開始を0.5秒遅らせる*/
+.gnavi li a:hover{
+	transition-delay: .5s;
+}
+
+/*線の設定*/
+.gnavi li a:before,
+.gnavi li a:after {
+    content: "";
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    left: 0;
+    /*線の形状*/
+    height:2px;
+    width:100%;
+    background: #b22222;
+    /*アニメーションの指定*/
+	transition: all .5s;
+}
+
+/*線の位置と変化*/
+.gnavi li a::before {
+    top: 0;
+	transform: translateX(-100%);/*X方向に-100%移動*/
+}
+.gnavi li a::after {
+    bottom: 0;
+	transform: translateX(100%);/*X方向に100%移動*/
+}
+
+/*hoverした際の線の変化*/
+.gnavi li a:hover::before ,
+.gnavi li a:hover::after {
+	transform: translateX(0);/*X方向に0%移動*/
+}
+
+
+
+
+
+
